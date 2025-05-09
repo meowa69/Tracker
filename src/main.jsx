@@ -1,6 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter as Router, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Outlet, Navigate } from "react-router-dom";
 import "./index.css";
 import Login from "./Routes/Login";
 import ForgotPassword from "./Routes/ForgotPassword";
@@ -48,7 +48,6 @@ createRoot(document.getElementById("root")).render(
                     <Route path="/change-password" element={<ChangePassword />} />
                     <Route element={<ProtectedRoute />}>
                         <Route element={<Layout />}>
-                            <Route index element={<Dashboard />} />
                             <Route path="/dashboard" element={<Dashboard />} />
                             <Route path="/add-records" element={<AddRecords />} />
                             <Route path="/request" element={<Request />} />
@@ -58,6 +57,7 @@ createRoot(document.getElementById("root")).render(
                             <Route path="/settings" element={<Settings />} />
                         </Route>
                     </Route>
+                    <Route index element={<Navigate to="/login" replace />} />
                     <Route path="*" element={<div>404 - Page Not Found</div>} />
                 </Routes>
             </Router>

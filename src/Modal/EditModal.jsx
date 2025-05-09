@@ -54,7 +54,6 @@ const EditModal = ({ isOpen, onClose, rowData: initialRowData, onSave, setRowDat
           if (!fetchedData) {
             throw new Error("Record not found");
           }
-          // Normalize completed field
           const completedValue = fetchedData.completed === true ? "true" : fetchedData.completed === false ? "false" : initialRowData.completed === true ? "true" : initialRowData.completed === false ? "false" : "false";
           const updatedRowData = {
             ...initialRowData,
@@ -99,11 +98,11 @@ const EditModal = ({ isOpen, onClose, rowData: initialRowData, onSave, setRowDat
 
   const handleAddRecipient = () => {
     if (newRecipient.name && newRecipient.address && newRecipient.salutation) {
-      const recipientToAdd = { 
-        ...newRecipient, 
-        id: null, 
-        designation: newRecipient.designation || "", 
-        office: newRecipient.office || "" 
+      const recipientToAdd = {
+        ...newRecipient,
+        id: null,
+        designation: newRecipient.designation || "",
+        office: newRecipient.office || "",
       };
       setRecipientList((prev) => {
         const newList = [...prev, recipientToAdd];
@@ -488,6 +487,7 @@ const EditModal = ({ isOpen, onClose, rowData: initialRowData, onSave, setRowDat
                   readOnly
                   className="w-full px-3 py-2 border rounded-lg bg-gray-100 text-gray-600 cursor-not-allowed focus:outline-none"
                 />
+                <div className="mt-1 text-xs text-gray-500">{formatDateForDisplay(localRowData.date_approved)}</div>
               </div>
             </div>
 
@@ -592,9 +592,7 @@ const EditModal = ({ isOpen, onClose, rowData: initialRowData, onSave, setRowDat
                           onFocus={(e) => e.target.showPicker()}
                           className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-[#408286] focus:border-[#408286] cursor-pointer"
                         />
-                        <div className="mt-1 text-xs">
-                          <span className="block text-gray-500">{formatDateForDisplay(localRowData.vm_received)}</span>
-                        </div>
+                        <div className="mt-1 text-xs text-gray-500">{formatDateForDisplay(localRowData.vm_received)}</div>
                       </div>
                     )}
                   </div>
@@ -659,9 +657,7 @@ const EditModal = ({ isOpen, onClose, rowData: initialRowData, onSave, setRowDat
                             onFocus={(e) => e.target.showPicker()}
                             className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-[#408286] focus:border-[#408286] cursor-pointer"
                           />
-                          <div className="mt-1 text-xs">
-                            <span className="block text-gray-500">{formatDateForDisplay(localRowData.cm_received)}</span>
-                          </div>
+                          <div className="mt-1 text-xs text-gray-500">{formatDateForDisplay(localRowData.cm_received)}</div>
                           {localRowData.cm_forwarded && (
                             <button
                               onClick={handlePrintReferral}
@@ -818,9 +814,7 @@ const EditModal = ({ isOpen, onClose, rowData: initialRowData, onSave, setRowDat
                     onFocus={(e) => e.target.showPicker()}
                     className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-[#408286] focus:border-[#408286] text-sm text-gray-900 cursor-pointer transition-all duration-200"
                   />
-                  <div className="mt-1 text-xs">
-                    <span className="block text-gray-500">{formatDateForDisplay(localRowData.date_transmitted)}</span>
-                  </div>
+                  <div className="mt-1 text-xs text-gray-500">{formatDateForDisplay(localRowData.date_transmitted)}</div>
                 </div>
               </div>
             </div>
@@ -853,9 +847,7 @@ const EditModal = ({ isOpen, onClose, rowData: initialRowData, onSave, setRowDat
                       localRowData.completed !== "true" ? "bg-gray-100 text-gray-400 cursor-not-allowed" : "cursor-pointer"
                     }`}
                   />
-                  <div className="mt-1 text-xs">
-                    <span className="block text-gray-500">{formatDateForDisplay(localRowData.completion_date)}</span>
-                  </div>
+                  <div className="mt-1 text-xs text-gray-500">{formatDateForDisplay(localRowData.completion_date)}</div>
                 </div>
               </div>
 
